@@ -7,6 +7,7 @@ import TaskFormModal from "./components/TaskFormModal.jsx";
 import Toolbar from "./components/Toolbar.jsx";
 import TagRow from "./components/TagRow.jsx";
 import StatBar from "./components/StatBar.jsx";
+import { useTheme } from "./hooks/useTheme.js";
 
 const PRIORITY_RANK = { high: 0, medium: 1, low: 2 };
 
@@ -18,6 +19,7 @@ export default function App() {
   const [sortBy, setSortBy] = useState("dueDate");
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState(null);
+  const [theme, toggleTheme] = useTheme();
 
   function openNewForm() {
     setEditingTask(null);
@@ -101,9 +103,19 @@ export default function App() {
             <div className="eyebrow">FIELD LEDGER · TASK LOG</div>
             <h1 className="title">Today's Entries</h1>
           </div>
-          <button className="btn btn--primary" onClick={openNewForm}>
-            + New Entry
-          </button>
+          <div className="header-actions">
+            <button
+              className="btn btn--icon"
+              onClick={toggleTheme}
+              aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+              title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+            >
+              {theme === "light" ? "🌙" : "☀️"}
+            </button>
+            <button className="btn btn--primary" onClick={openNewForm}>
+              + New Entry
+            </button>
+          </div>
         </header>
 
         <StatBar tasks={tasks} />
