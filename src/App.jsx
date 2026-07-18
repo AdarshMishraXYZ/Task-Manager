@@ -6,6 +6,7 @@ import TaskList from "./components/TaskList.jsx";
 import TaskFormModal from "./components/TaskFormModal.jsx";
 import Toolbar from "./components/Toolbar.jsx";
 import TagRow from "./components/TagRow.jsx";
+import StatBar from "./components/StatBar.jsx";
 
 const PRIORITY_RANK = { high: 0, medium: 1, low: 2 };
 
@@ -104,6 +105,8 @@ export default function App() {
             + New Entry
           </button>
         </header>
+
+        <StatBar tasks={tasks} />
 
         <Toolbar
           filter={filter}
